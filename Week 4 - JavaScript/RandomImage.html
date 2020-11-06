@@ -1,0 +1,50 @@
+<head>
+<meta charset=utf-8 />
+<title>Display a random image.</title>
+</head>
+<body>
+<div>
+<button id="jsstyle"
+onclick="display_random_image();">Show Random Image</button>
+<script>
+function display_random_image()
+{
+var theImages = [{
+src: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Orange-Whole-%26-Split.jpg",
+width: "240",
+height: "160"
+}, {
+src: "https://5.imimg.com/data5/YD/PM/MY-40752733/fresh-mango-500x500.jpg",
+width: "320",
+height: "195"
+}, {
+src: "https://5.imimg.com/data5/YY/EN/MY-8155364/fresh-apple-500x500.jpg",
+width: "500",
+height: "343"
+}];
+var preBuffer = [];
+for (var i = 0, j = theImages.length; i < j; i++) {
+preBuffer[i] = new Image();
+preBuffer[i].src = theImages[i].src;
+preBuffer[i].width = theImages[i].width;
+preBuffer[i].height = theImages[i].height;
+}
+// create random image number
+function getRandomInt(min,max)
+{
+// return Math.floor(Math.random() * (max - min + 1)) + min;
+imn = Math.floor(Math.random() * (max - min + 1)) + min;
+return preBuffer[imn];
+}// 0 is first image, preBuffer.length - 1) is last imagevar newImage = getRandomInt(0, preBuffer.length - 1);
+// remove the previous images
+var images = document.getElementsByTagName('img');
+var l = images.length;
+for (var p = 0; p < l; p++) {
+images[0].parentNode.removeChild(images[0]);
+}
+// display the image
+document.body.appendChild(newImage);
+}
+</script>
+</div>
+</body>
